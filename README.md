@@ -1,5 +1,5 @@
 # uniswap-v3
-状态：开发中,periphery的合约还不能使用。目前只有factory能够成功部署
+状态：开发中，目前打算将其改造为solidity 0.8.19版本的
 
 基于hardhat框架管理和发布uniswap v3
 建议结合本文来深入了解源码：
