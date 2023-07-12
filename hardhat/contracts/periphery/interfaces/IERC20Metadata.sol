@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity ^0.7.0;
 
-import './external/openzeppelin/token/ERC20/IERC20.sol';
+import '../external/openzeppelin/token/ERC20/IERC20.sol';
 
 /// @title IERC20Metadata
 /// @title Interface for ERC20 Metadata

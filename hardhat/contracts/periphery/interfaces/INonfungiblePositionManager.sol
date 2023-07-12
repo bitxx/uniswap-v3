@@ -2,8 +2,8 @@
 pragma solidity >=0.7.5;
 pragma abicoder v2;
 
-import './external/openzeppelin/token/ERC721/extensions/IERC721Metadata.sol';
-import './external/openzeppelin/token/ERC721/extensions/IERC721Enumerable.sol';
+import '../external/openzeppelin/token/ERC721/extensions/IERC721Metadata.sol';
+import '../external/openzeppelin/token/ERC721/extensions/IERC721Enumerable.sol';
 
 import './IPoolInitializer.sol';
 import './IERC721Permit.sol';
