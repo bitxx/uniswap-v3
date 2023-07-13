@@ -30,3 +30,5 @@ npx hardhat --network goerli run scripts/deploy_2_router.js
 ## 信息整理
 使用本项目，goerli测试网自行发布信息如下：
 1. [Factory合约](https://goerli.etherscan.io/address/0xC5F57433074986CD739900242033Ca5E5f6da4be)
+2. [Router合约](https://goerli.etherscan.io/address/0x440402159426E17E6715E69D36253FeF77DB812B) 
+
