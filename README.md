@@ -1,6 +1,4 @@
 # uniswap-v3
-状态：开发中，目前打算将其改造为solidity 0.8.19版本的
-
 基于hardhat框架管理和发布uniswap v3
 建议结合本文来深入了解源码：
 1. [uniswap-v3设计详解](http://www.wjblog.top/articles/a0a6b822/) 
@@ -25,7 +23,6 @@ npx hardhat --network goerli run scripts/deploy_1_factory.js
 
 # 2. 发布路由合约，其中需要传入两个参数：factory合约地址以及weth9合约地址
 # 其中factory合约地址使用第一步返回的地址，weth9合约地址用的是我以前发布的地址（详见下面备注）
-# 当前该合约由于依赖问题，还异常，后续处理
 npx hardhat --network goerli run scripts/deploy_2_router.js 
 ```
 `备注`：weth9合约，可以查阅我以前uniswap-v2项目整合时的实现源码：[uniswap-v2 整合部署和发布](https://github.com/jason-wj/uniswap-v2)

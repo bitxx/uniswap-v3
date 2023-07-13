@@ -20,7 +20,7 @@ async function main() {
 
     console.log("Account balance:", (await deployer.getBalance()).toString());
 
-    //solidity version：0.8.19
+    //solidity version：0.8.18
     const Router = await ethers.getContractFactory("SwapRouter");
     const router = await Router.deploy('0xC5F57433074986CD739900242033Ca5E5f6da4be','0xFe33eC9960E430608030e92860264B486Ae99Ef2');
     await router.deployed();

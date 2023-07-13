@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.8.19;
+pragma solidity =0.8.18;
 
 import '../external/openzeppelin/token/ERC20/IERC20.sol';
 
@@ -16,8 +16,9 @@ library TransferHelper {
         address to,
         uint256 value
     ) internal {
-        (bool success, bytes memory data) =
-            token.call(abi.encodeWithSelector(IERC20.transferFrom.selector, from, to, value));
+        (bool success, bytes memory data) = token.call(
+            abi.encodeWithSelector(IERC20.transferFrom.selector, from, to, value)
+        );
         require(success && (data.length == 0 || abi.decode(data, (bool))), 'STF');
     }
 

@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+// from https://github.com/Uniswap/solidity-lib/blob/master/contracts/libraries/SafeERC20Namer.sol
+// modified for solidity 0.8
 
-pragma solidity >=0.8.19;
+pragma solidity =0.8.18;
 
 import './AddressStringUtil.sol';
 

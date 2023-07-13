@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity >=0.8.19;
+pragma solidity =0.8.18;
 
 import '../external/openzeppelin/token/ERC20/IERC20.sol';
-import '../../factory/libraries/LowGasSafeMath.sol';
 
 import './PeripheryPayments.sol';
 import '../interfaces/IPeripheryPaymentsWithFee.sol';
@@ -11,8 +10,6 @@ import '../interfaces/external/IWETH9.sol';
 import '../libraries/TransferHelper.sol';
 
 abstract contract PeripheryPaymentsWithFee is PeripheryPayments, IPeripheryPaymentsWithFee {
-    using LowGasSafeMath for uint256;
-
     /// @inheritdoc IPeripheryPaymentsWithFee
     function unwrapWETH9WithFee(
         uint256 amountMinimum,
@@ -27,7 +24,7 @@ abstract contract PeripheryPaymentsWithFee is PeripheryPayments, IPeripheryPayme
 
         if (balanceWETH9 > 0) {
             IWETH9(WETH9).withdraw(balanceWETH9);
-            uint256 feeAmount = balanceWETH9.mul(feeBips) / 10_000;
+            uint256 feeAmount = (balanceWETH9 * feeBips) / 10_000;
             if (feeAmount > 0) TransferHelper.safeTransferETH(feeRecipient, feeAmount);
             TransferHelper.safeTransferETH(recipient, balanceWETH9 - feeAmount);
         }
@@ -47,7 +44,7 @@ abstract contract PeripheryPaymentsWithFee is PeripheryPayments, IPeripheryPayme
         require(balanceToken >= amountMinimum, 'Insufficient token');
 
         if (balanceToken > 0) {
-            uint256 feeAmount = balanceToken.mul(feeBips) / 10_000;
+            uint256 feeAmount = (balanceToken * feeBips) / 10_000;
             if (feeAmount > 0) TransferHelper.safeTransfer(token, feeRecipient, feeAmount);
             TransferHelper.safeTransfer(token, recipient, balanceToken - feeAmount);
         }

@@ -20,7 +20,7 @@ async function main() {
 
     console.log("Account balance:", (await deployer.getBalance()).toString());
 
-    //solidity version：0.8.19
+    //solidity version：0.8.18
     const Factory = await ethers.getContractFactory("UniswapV3Factory");
     const factory = await Factory.deploy();
     await factory.deployed();
