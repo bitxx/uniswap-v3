@@ -21,12 +21,14 @@ async function main() {
     console.log("Account balance:", (await deployer.getBalance()).toString());
 
     //solidity version：0.8.18
-    const Router = await ethers.getContractFactory("SwapRouter");
-    //分别传入factory合约以及weth9合约地址
-    const router = await Router.deploy('0xC5F57433074986CD739900242033Ca5E5f6da4be','0xFe33eC9960E430608030e92860264B486Ae99Ef2');
-    await router.deployed();
 
-    console.log("Router address:", router.address);
+    //发布仓位描述
+    const Mgr = await ethers.getContractFactory("NonfungiblePositionManager");
+    //分别传入weth9合约地址以及转为16进制的`eth`名称，也就是该名称是bytes32：
+    const mgr = await Mgr.deploy('0xC5F57433074986CD739900242033Ca5E5f6da4be','0xFe33eC9960E430608030e92860264B486Ae99Ef2','0xd28EC177C8f347F4C759a9a15055Ccf1A66E2342');
+    await mgr.deployed(); //等的确认发布
+
+    console.log("NonfungiblePositionManager address:", mgr.address);
 }
 
 main()

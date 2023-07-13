@@ -21,14 +21,24 @@ async function main() {
     console.log("Account balance:", (await deployer.getBalance()).toString());
 
     //solidity version：0.8.18
-    const Router = await ethers.getContractFactory("SwapRouter");
-    //分别传入factory合约以及weth9合约地址
-    const router = await Router.deploy('0xC5F57433074986CD739900242033Ca5E5f6da4be','0xFe33eC9960E430608030e92860264B486Ae99Ef2');
-    await router.deployed();
+    //发布library
+    const Library = await ethers.getContractFactory("NFTDescriptor");
+    //分别传入weth9合约地址以及转为16进制的`eth`名称，也就是该名称是bytes32：
+    const library = await Library.deploy();
+    await library.deployed();
 
-    console.log("Router address:", router.address);
+    //发布仓位描述
+    const Pd = await ethers.getContractFactory("NonfungibleTokenPositionDescriptor",{
+        libraries: {
+            NFTDescriptor: library.address
+        }
+    });
+    //分别传入weth9合约地址以及转为16进制的`eth`名称，也就是该名称是bytes32：
+    const pd = await Pd.deploy('0xFe33eC9960E430608030e92860264B486Ae99Ef2','0x4554480000000000000000000000000000000000000000000000000000000000');
+    await pd.deployed(); //等的确认发布
+
+    console.log("PositionDescriptor address:", pd.address);
 }
-
 main()
     .then(() => process.exit(0))
     .catch((error) => {
