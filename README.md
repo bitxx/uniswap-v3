@@ -4,11 +4,11 @@
 1. [uniswap-v3设计详解](http://www.wjblog.top/articles/a0a6b822/) 
 
 ## 目录说明
-frontend：前端代码
-hardhat：合约，基于hardhat框架
-hardhat/contracts：其中有具体的solidity合约
-    1. factory：为工厂合约，v3核心业务逻辑均在此处
-    2. periphery：外围合约，其中包括路由合约，nft等等，该外围合约调用factory合约，实现完整的业务逻辑
+frontend：前端代码  
+hardhat：合约，基于hardhat框架  
+hardhat/contracts：其中有具体的solidity合约  
+    1. factory：为工厂合约，v3核心业务逻辑均在此处  
+    2. periphery：外围合约，其中包括路由合约，nft等等，该外围合约调用factory合约，实现完整的业务逻辑  
 
 ## 合约编译
 ```shell
