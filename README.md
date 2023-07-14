@@ -4,11 +4,11 @@
 1. [uniswap-v3设计详解](http://www.wjblog.top/articles/a0a6b822/) 
 
 ## 目录说明
-frontend：前端代码  
+frontend：前端代码，源自官方项目[interface](https://github.com/Uniswap/interface)  v3.3.6版
 hardhat：合约，基于hardhat框架  
 hardhat/contracts：其中有具体的solidity合约  
-&emsp;&emsp;1. factory：为工厂合约，v3核心业务逻辑均在此处  
-&emsp;&emsp;2. periphery：外围合约，该外围合约调用factory合约，实现完整的业务逻辑，其中包含以下几个独立合约：  
+&emsp;&emsp;1. factory：为工厂合约，v3核心业务逻辑均在此处，源自官方项目 [v3-core](https://github.com/Uniswap/v3-core) 分支0.8
+&emsp;&emsp;2. periphery：外围合约，该外围合约调用factory合约，实现完整的业务逻辑，，源自官方项目 [v3-periphery](https://github.com/Uniswap/v3-periphery)  分支0.8,其中包含以下几个独立合约：  
 &emsp;&emsp;&emsp;&emsp;1. SwapRouter：路由合约，顾名思义，衔接工厂合约，接收外部请求，主要起中转作用  
 &emsp;&emsp;&emsp;&emsp;2. NonfungiblePositionManager：NFT管理合约  
 &emsp;&emsp;&emsp;&emsp;3. NonfungibleTokenPositionDescriptor：NFT仓位描述合约  
@@ -20,7 +20,7 @@ cd hardhat
 npx hardhat compile
 ```
 
-## 发布
+## 发布合约
 `说明`：weth9合约，可以查阅我以前uniswap-v2项目整合时的实现源码：[uniswap-v2 整合部署和发布](https://github.com/jason-wj/uniswap-v2)
 我在goerli测试网部署的 [weth9合约](https://goerli.etherscan.io/address/0xFe33eC9960E430608030e92860264B486Ae99Ef2) 地址是：0xFe33eC9960E430608030e92860264B486Ae99Ef2
 ```shell
@@ -39,6 +39,24 @@ npx hardhat --network goerli run scripts/deploy_3_pd.js
 # 4. NFT管理合约发布
 # 其中需要在deploy脚本中传入参数：第一步的factory合约地址，weth9合约地址，第三步的仓位描述合约地址
 npx hardhat --network goerli run scripts/deploy_4_mgr.js 
+```
+
+## 前端部署
+当前只是把官方的前端[interface](https://github.com/Uniswap/interface)  v3.3.6版，迁移过来了，但里面内容都还没改，使用的参数等都是官方默认的
+```shell
+cd frontend
+
+# 先清一下缓存，以防编译异常，我遇到了，清理后一切恢复正常
+yarn cache clean --force
+
+# 启动
+yarn start
+
+# 备注：如果node verson>=17，需要加入如下环境变量
+export NODE_OPTIONS=--openssl-legacy-provider
+
+# 若要发布，可进行编译
+yarn build
 ```
 
 
